@@ -1,68 +1,57 @@
-﻿using Academy_2024.Models;
+﻿using Academy_2024.Data;
+using Academy_2024.Models;
 
 namespace Academy_2024.Repositories
 {
     public class UserRepository
     {
-        private static List<User>Users = new List<User>
+        private readonly ApplicationDbContext _context;
+
+        public UserRepository() 
         {
-            new User
-            {
-                Id = 1,
-                FirstName ="John",
-                LastName = "Doe"
-            }
-        };
+            _context= new ApplicationDbContext();
+        }
 
         public List<User> GetAll()
         {
-            return Users;
+            return _context.Users.ToList();
         }
 
-        public User? GetById(int id)
-        {
-            foreach (var user in GetAll())
-            {
-                if (user.Id == id)
-                {
-                    return user;
-                }
-            }
-
-            return null;
-        }
+        public User? GetById(int id) => _context.Users.FirstOrDefault(x => x.Id == id);
 
         public void Create(User data)
         {
-            Users.Add(data);
+            _context.Users.Add(data);
+            _context.SaveChanges();
         }
 
         public User? Update(int id, User data)
         {
-            foreach (var user in GetAll())
+            var user = _context.Users.FirstOrDefault(x => x.Id == id);
+            if (user != null)
             {
                 if (user.Id == id)
                 {
                     user.FirstName = data.FirstName;
                     user.LastName = data.LastName;
 
+                    _context.SaveChanges();
+
                     return user;
                 }
             }
-
             return null;
         }
 
         public bool Delete(int id)
         {
-            foreach (var user in GetAll())
+            var user = _context.Users.FirstOrDefault(x => x.Id == id);
+            if (user != null)
             {
-                if (user.Id == id)
-                {
-                    Users.Remove(user);
+                _context.Users.Remove(user);
+                _context.SaveChanges();
 
-                    return true;
-                }
+                return true;
             }
 
             return false;
