@@ -27,7 +27,6 @@ namespace Academy_2024
 
             app.UseAuthorization();
 
-
             app.MapControllers();
 
             app.Run();

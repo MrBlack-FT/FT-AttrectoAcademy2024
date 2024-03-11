@@ -1,5 +1,6 @@
 ﻿using Academy_2024.Data;
 using Academy_2024.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Academy_2024.Repositories
 {
@@ -7,9 +8,9 @@ namespace Academy_2024.Repositories
     {
         private readonly ApplicationDbContext _context;
 
-        public UserRepository() 
+        public UserRepository()
         {
-            _context= new ApplicationDbContext();
+            _context = new ApplicationDbContext();
         }
 
         public List<User> GetAll()
@@ -18,6 +19,20 @@ namespace Academy_2024.Repositories
         }
 
         public User? GetById(int id) => _context.Users.FirstOrDefault(x => x.Id == id);
+
+        //Age added here.
+        public List<User> GetAdults()
+        {
+            var adults = new List<User>();
+            foreach (var user in _context.Users)
+            {
+                if (user.Age > 17)
+                {
+                    adults.Add(user);
+                }
+            }
+            return adults;
+        }
 
         public void Create(User data)
         {
@@ -34,6 +49,8 @@ namespace Academy_2024.Repositories
                 {
                     user.FirstName = data.FirstName;
                     user.LastName = data.LastName;
+                    //Age added here.
+                    user.Age = data.Age;
 
                     _context.SaveChanges();
 

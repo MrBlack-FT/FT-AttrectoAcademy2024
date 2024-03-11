@@ -11,5 +11,7 @@ namespace Academy_2024.Models
         public string? LastName { get; set; }
         [Required]
         public string? Email { get; set; }
+        //Age added here.
+        public int? Age {  get; set; }
     }
 }
