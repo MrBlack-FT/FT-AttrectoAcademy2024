@@ -5,6 +5,8 @@ namespace Academy_2024.Repositories
 {
     public class CourseRepository
     {
+        private readonly ApplicationDbContext _context;
+
         private static List<Course> Courses = new List<Course>
         {
             new Course
@@ -15,6 +17,53 @@ namespace Academy_2024.Repositories
             }
         };
 
+        public List<Course> GetAll()
+        {
+            return _context.Courses.ToList();
+        }
+
+        public Course? GetById(int id) => _context.Courses.FirstOrDefault(x => x.Id == id);
+
+        public void Create(Course data)
+        {
+            _context.Courses.Add(data);
+            _context.SaveChanges();
+        }
+
+        public Course? Update(int id, Course data)
+        {
+            var course = _context.Courses.FirstOrDefault(x => x.Id == id);
+            if (course != null)
+            {
+                if (course.Id == id)
+                {
+                    course.Name = data.Name;
+                    course.Description = data.Description;
+
+                    _context.SaveChanges();
+
+                    return course;
+                }
+            }
+            return null;
+        }
+
+        public bool Delete(int id)
+        {
+            var course = _context.Courses.FirstOrDefault(x => x.Id == id);
+            if (course != null)
+            {
+                _context.Courses.Remove(course);
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+        }
+
+        //Old version
+        /*
         public List<Course> GetAll()
         {
             return Courses;
@@ -69,5 +118,6 @@ namespace Academy_2024.Repositories
 
             return false;
         }
+        */
     }
 }

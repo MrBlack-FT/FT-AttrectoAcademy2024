@@ -10,19 +10,22 @@ namespace Academy_2024.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AlterColumn<int>(
+            migrationBuilder.AlterColumn<int>
+            (
                 name: "Age",
                 table: "Users",
                 type: "INTEGER",
                 nullable: true,
                 oldClrType: typeof(int),
-                oldType: "INTEGER");
+                oldType: "INTEGER"
+            );
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AlterColumn<int>(
+            migrationBuilder.AlterColumn<int>
+            (
                 name: "Age",
                 table: "Users",
                 type: "INTEGER",
@@ -30,7 +33,8 @@ namespace Academy_2024.Migrations
                 defaultValue: 0,
                 oldClrType: typeof(int),
                 oldType: "INTEGER",
-                oldNullable: true);
+                oldNullable: true
+            );
         }
     }
 }

@@ -20,5 +20,8 @@ namespace Academy_2024.Data
         }
 
         public DbSet<User> Users { get; set; }
+
+        //Courses Getter - Setter
+        public DbSet<Course>Courses { get; set; }
     }
 }
