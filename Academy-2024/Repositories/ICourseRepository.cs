@@ -15,6 +15,6 @@ namespace Academy_2024.Repositories
 
         public Task<Course?> UpdateAsync(int id, Course data);
 
-        public Task<Course?> GetByAuthorAsync(User Author);
+        //public Task<Course?> GetByAuthorAsync(User Author);
     }
 }

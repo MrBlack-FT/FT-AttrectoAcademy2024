@@ -11,3 +11,8 @@
 		-Known Issues
 			-Author and Endpoint to CourseController added but:
 				-Migration cannot be created.
+	- 20240312.1.2 Patch Notes
+		-Small bug fix.
+		-Known Issues
+			-Author and Endpoint to CourseController added but:
+				-Migration cannot be created.

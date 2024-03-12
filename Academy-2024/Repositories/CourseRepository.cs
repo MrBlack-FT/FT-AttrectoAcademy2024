@@ -70,6 +70,6 @@ namespace Academy_2024.Repositories
             return false;
         }
 
-        public Task<Course?> GetByAuthorAsync(User Author) => _context.Courses.FirstOrDefaultAsync(course => course.Author == Author);
+        //public Task<Course?> GetByAuthorAsync(User Author) => _context.Courses.FirstOrDefaultAsync(course => course.Author == Author);
     }
 }
