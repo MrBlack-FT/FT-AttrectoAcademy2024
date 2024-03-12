@@ -7,10 +7,7 @@ namespace Academy_2024.Data
     {
         //private readonly string _dbPath;
 
-        public ApplicationDbContext(DbContextOptions options) : base(options)
-        {
-
-        }
+        public ApplicationDbContext(DbContextOptions options) : base(options) { }
 
         public DbSet<User> Users { get; set; }
 

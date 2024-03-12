@@ -34,11 +34,11 @@ namespace Academy_2024.Controllers
             return user == null ? NotFound() : user;
         }
 
-        //Age added here.
+        //Get Adults added here.
         [HttpGet("ADULTS")]
-        public IEnumerable<User> GetAdults()
+        public async Task<IEnumerable<User>> GetAdults()
         {
-            return _userRepository.GetAdultsAsync();
+            return await _userRepository.GetAdultsAsync();
         }
 
         // POST api/<UsersController>

@@ -1,5 +1,5 @@
-
 using Academy_2024.Data;
+using Academy_2024.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace Academy_2024
@@ -16,6 +16,10 @@ namespace Academy_2024
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            //DEBUG! => MISSED LINE!
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<ICourseRepository, CourseRepository>();
 
             //AddTransient külön objektumot hoz létre!
             builder.Services.AddScoped<IApplicationBuilder, ApplicationBuilder>();

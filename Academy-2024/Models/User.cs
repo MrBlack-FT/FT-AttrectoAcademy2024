@@ -5,14 +5,18 @@ namespace Academy_2024.Models
     public class User
     {
         [Key]
-        public int? Id { get; set; }
+        public int Id { get; set; }
+
         [StringLength(10)]
         public string? FirstName { get; set; }
+
         public string? LastName { get; set; }
+
         [Required]
         public string? Email { get; set; }
-        //Age added here.
-        public int? Age {  get; set; }
+
+        //DateOfBirth added here.
+        public int? DateOfBirth {  get; set; }
 
         public ICollection<Course> Courses { get; set; } = [];
     }

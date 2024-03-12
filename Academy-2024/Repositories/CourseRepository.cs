@@ -1,12 +1,18 @@
 ﻿using Academy_2024.Data;
 using Academy_2024.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Academy_2024.Repositories
 {
-    public class CourseRepository
+    public class CourseRepository : ICourseRepository
     {
         private readonly ApplicationDbContext _context;
 
+        public CourseRepository(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+        
         private static List<Course> Courses = new List<Course>
         {
             new Course
@@ -17,44 +23,44 @@ namespace Academy_2024.Repositories
             }
         };
 
-        public List<Course> GetAll()
+        public Task<List<Course>> GetAllAsync()
         {
-            return _context.Courses.ToList();
+            return _context.Courses.ToListAsync();
         }
 
-        public Course? GetById(int id) => _context.Courses.FirstOrDefault(x => x.Id == id);
+        public Task<Course?> GetByIdAsync(int id) => _context.Courses.FirstOrDefaultAsync(x => x.Id == id);
 
-        public void Create(Course data)
+        public async Task CreateAsync(Course data)
         {
-            _context.Courses.Add(data);
-            _context.SaveChanges();
+            await _context.Courses.AddAsync(data);
+            await _context.SaveChangesAsync();
         }
 
-        public Course? Update(int id, Course data)
+        public async Task<Course?> UpdateAsync(int id, Course data)
         {
-            var course = _context.Courses.FirstOrDefault(x => x.Id == id);
+            var course = await _context.Courses.FirstOrDefaultAsync(x => x.Id == id);
             if (course != null)
             {
-                if (course.Id == id)
-                {
+                //if (course.Id == id)
+                //{
                     course.Name = data.Name;
                     course.Description = data.Description;
 
-                    _context.SaveChanges();
+                    await _context.SaveChangesAsync();
 
                     return course;
-                }
+                //}
             }
             return null;
         }
 
-        public bool Delete(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
-            var course = _context.Courses.FirstOrDefault(x => x.Id == id);
+            var course = await _context.Courses.FirstOrDefaultAsync(x => x.Id == id);
             if (course != null)
             {
                 _context.Courses.Remove(course);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
 
                 return true;
             }

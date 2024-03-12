@@ -11,52 +11,52 @@ namespace Academy_2024.Controllers
     [ApiController]
     public class CourseController : ControllerBase
     {
-        private CourseRepository _courseRepository;
+        private readonly ICourseRepository _courseRepository;
 
-        public CourseController()
+        public CourseController(ICourseRepository courseRepository)
         {
-            _courseRepository = new CourseRepository();
+            _courseRepository = courseRepository;
         }
 
         // GET: api/<UsersController>
         [HttpGet]
-        public IEnumerable<Course> Get()
+        public async Task<IEnumerable<Course>> Get()
         {
-            return _courseRepository.GetAll();
+            return await _courseRepository.GetAllAsync();
         }
 
         // GET api/<UsersController>/5
         [HttpGet("{id}")]
-        public ActionResult<Course> Get(int id)
+        public async Task<ActionResult<Course>> Get(int id)
         {
-            var course = _courseRepository.GetById(id);
+            var course = await _courseRepository.GetByIdAsync(id);
 
             return course == null ? NotFound() : course;
         }
 
         // POST api/<UsersController>
         [HttpPost]
-        public ActionResult Post([FromBody] Course data)
+        public async Task<ActionResult> Post([FromBody] Course data)
         {
-            _courseRepository.Create(data);
+            await _courseRepository.CreateAsync(data);
 
             return NoContent();
         }
 
         // PUT api/<UsersController>/5
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] Course data)
+        public async Task<ActionResult> Put(int id, [FromBody] Course data)
         {
-            var user = _courseRepository.Update(id, data);
+            var user = await _courseRepository.UpdateAsync(id, data);
 
             return user == null ? NotFound() : NoContent();
         }
 
         // DELETE api/<UsersController>/5
         [HttpDelete("{id}")]
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            return _courseRepository.Delete(id) ? NoContent() : NotFound();
+            return await _courseRepository.DeleteAsync(id) ? NoContent() : NotFound();
         }
     }
 }
