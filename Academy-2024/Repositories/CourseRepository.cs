@@ -12,7 +12,8 @@ namespace Academy_2024.Repositories
         {
             _context = context;
         }
-        
+
+        /*
         private static List<Course> Courses = new List<Course>
         {
             new Course
@@ -22,6 +23,7 @@ namespace Academy_2024.Repositories
                 Description = "This is the TestCourse1."
             }
         };
+        */
 
         public Task<List<Course>> GetAllAsync()
         {
@@ -68,62 +70,6 @@ namespace Academy_2024.Repositories
             return false;
         }
 
-        //Old version
-        /*
-        public List<Course> GetAll()
-        {
-            return Courses;
-        }
-
-        public Course? GetById(int id)
-        {
-            foreach (var course in GetAll())
-            {
-                if (course.Id == id)
-                {
-                    return course;
-                }
-            }
-
-            return null;
-        }
-
-        public void Create(Course data)
-        {
-            Courses.Add(data);
-        }
-
-        public Course? Update(int id, Course data)
-        {
-            foreach (var course in GetAll())
-            {
-                if (course.Id == id)
-                {
-                    course.Id = data.Id;
-                    course.Name = data.Name;
-                    course.Description = data.Description;
-
-                    return course;
-                }
-            }
-
-            return null;
-        }
-
-        public bool Delete(int id)
-        {
-            foreach (var course in GetAll())
-            {
-                if (course.Id == id)
-                {
-                    Courses.Remove(course);
-
-                    return true;
-                }
-            }
-
-            return false;
-        }
-        */
+        public Task<Course?> GetByAuthorAsync(User Author) => _context.Courses.FirstOrDefaultAsync(course => course.Author == Author);
     }
 }

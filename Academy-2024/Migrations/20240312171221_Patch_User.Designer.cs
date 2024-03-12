@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Academy_2024.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240312152635_Updated_Fixes2")]
-    partial class Updated_Fixes2
+    [Migration("20240312171221_Patch_User")]
+    partial class Patch_User
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,11 +50,10 @@ namespace Academy_2024.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("FirstName")
-                        .HasMaxLength(10)
+                    b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("LastName")
+                    b.Property<string>("Role")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");

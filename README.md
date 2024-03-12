@@ -1,4 +1,13 @@
 # Academy-2024
-	- 20240312 Patch notes
+	- 20240312 Patch Notes
 		-ICourseRepository interface added.
 		-Various issues fixed.
+	- 20240312.1 Patch Notes
+		-User entity updated:
+			-Name added.
+			-FirstName removed.
+			-LastName removed.
+			-Migration created.
+		-Known Issues
+			-Author and Endpoint to CourseController added but:
+				-Migration cannot be created.

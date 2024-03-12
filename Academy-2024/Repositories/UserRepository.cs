@@ -55,8 +55,8 @@ namespace Academy_2024.Repositories
             {
                 //if (user.Id == id)
                 //{
-                user.FirstName = data.FirstName;
-                user.LastName = data.LastName;
+                user.Name = data.Name;
+                user.Role = data.Role;
                 //DateOfBirth added here.
                 user.DateOfBirth = data.DateOfBirth;
 
