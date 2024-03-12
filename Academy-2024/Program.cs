@@ -1,4 +1,7 @@
 
+using Academy_2024.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace Academy_2024
 {
     public class Program
@@ -13,6 +16,14 @@ namespace Academy_2024
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            //AddTransient külön objektumot hoz létre!
+            builder.Services.AddScoped<IApplicationBuilder, ApplicationBuilder>();
+
+            builder.Services.AddDbContext<ApplicationDbContext>
+            (
+                options => options.UseSqlite(builder.Configuration.GetConnectionString("ApplicationDBContext"))
+            );
 
             var app = builder.Build();
 

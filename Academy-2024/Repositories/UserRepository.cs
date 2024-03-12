@@ -1,27 +1,30 @@
 ﻿using Academy_2024.Data;
 using Academy_2024.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Academy_2024.Repositories
 {
-    public class UserRepository
+    public class UserRepository : IUserRepository
     {
         private readonly ApplicationDbContext _context;
 
-        public UserRepository()
+        public UserRepository(ApplicationDbContext context)
         {
-            _context = new ApplicationDbContext();
+            _context = context;
         }
 
-        public List<User> GetAll()
+        public Task<List<User>> GetAllAsync()
         {
-            return _context.Users.ToList();
+            return _context.Users.ToListAsync();
         }
 
-        public User? GetById(int id) => _context.Users.FirstOrDefault(x => x.Id == id);
+        public Task<User?> GetByIdAsync(int id) => _context.Users.FirstOrDefaultAsync(x => x.Id == id);
 
         //Age added here.
-        public List<User> GetAdults()
+        //Users where to list
+        //ToList
+        public List<User> GetAdultsAsync()
         {
             var adults = new List<User>();
             foreach (var user in _context.Users)
@@ -34,15 +37,15 @@ namespace Academy_2024.Repositories
             return adults;
         }
 
-        public void Create(User data)
+        public async Task CreateAsync(User data)
         {
-            _context.Users.Add(data);
-            _context.SaveChanges();
+            await _context.Users.AddAsync(data);
+            await _context.SaveChangesAsync();
         }
 
-        public User? Update(int id, User data)
+        public async Task<User?> UpdateAsync(int id, User data)
         {
-            var user = _context.Users.FirstOrDefault(x => x.Id == id);
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
             if (user != null)
             {
                 if (user.Id == id)
@@ -60,13 +63,13 @@ namespace Academy_2024.Repositories
             return null;
         }
 
-        public bool Delete(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
-            var user = _context.Users.FirstOrDefault(x => x.Id == id);
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
             if (user != null)
             {
                 _context.Users.Remove(user);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
 
                 return true;
             }

@@ -13,5 +13,7 @@ namespace Academy_2024.Models
         public string? Email { get; set; }
         //Age added here.
         public int? Age {  get; set; }
+
+        public ICollection<Course> Courses { get; set; } = [];
     }
 }

@@ -11,25 +11,25 @@ namespace Academy_2024.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private UserRepository _userRepository;
+        private readonly IUserRepository _userRepository;
 
-        public UsersController()
+        public UsersController(IUserRepository userRepository)
         {
-            _userRepository = new UserRepository();
+            _userRepository = userRepository;
         }
 
         // GET: api/<UsersController>
         [HttpGet]
-        public IEnumerable<User> Get()
+        public async Task<IEnumerable<User>> Get()
         {
-            return _userRepository.GetAll();
+            return await _userRepository.GetAllAsync();
         }
 
         // GET api/<UsersController>/5
         [HttpGet("{id}")]
-        public ActionResult<User> Get(int id)
+        public async Task<ActionResult<User>> Get(int id)
         {
-            var user = _userRepository.GetById(id);
+            var user = await _userRepository.GetByIdAsync(id);
 
             return user == null ? NotFound() : user;
         }
@@ -38,32 +38,32 @@ namespace Academy_2024.Controllers
         [HttpGet("ADULTS")]
         public IEnumerable<User> GetAdults()
         {
-            return _userRepository.GetAdults();
+            return _userRepository.GetAdultsAsync();
         }
 
         // POST api/<UsersController>
         [HttpPost]
-        public ActionResult Post([FromBody] User data)
+        public async Task<ActionResult> Post([FromBody] User data)
         {
-            _userRepository.Create(data);
+            await _userRepository.CreateAsync(data);
 
             return NoContent();
         }
 
         // PUT api/<UsersController>/5
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] User data)
+        public async Task<ActionResult> Put(int id, [FromBody] User data)
         {
-            var user = _userRepository.Update(id, data);
+            var user = await _userRepository.UpdateAsync(id, data);
 
             return user == null ? NotFound() : NoContent();
         }
 
         // DELETE api/<UsersController>/5
         [HttpDelete("{id}")]
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            return _userRepository.Delete(id) ? NoContent() : NotFound();
+            return await _userRepository.DeleteAsync(id) ? NoContent() : NotFound();
         }
     }
 }
