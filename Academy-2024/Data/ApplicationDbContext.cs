@@ -13,5 +13,12 @@ namespace Academy_2024.Data
 
         //Courses Getter - Setter
         public DbSet<Course> Courses { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Course>()
+                .HasOne(course => course.Author)
+                .WithMany();
+        }
     }
 }

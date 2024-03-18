@@ -16,3 +16,9 @@
 		-Known Issues
 			-Author and Endpoint to CourseController added but:
 				-Migration cannot be created.
+	- 20240318 Patch Notes
+		-Fixed: Migration could not be created for Author:
+			-GetByAuthorAsync added.
+			-GetByAuthorAsync added.
+			-GetAuthor added.
+			-OnModelCreating added.

@@ -59,7 +59,7 @@ namespace Academy_2024.Controllers
             return await _courseRepository.DeleteAsync(id) ? NoContent() : NotFound();
         }
 
-        /*
+        //DEBUG! => Author
         [HttpGet("Author")]
         public async Task<ActionResult<Course>> GetAuthor(User Author)
         {
@@ -67,6 +67,5 @@ namespace Academy_2024.Controllers
 
             return author == null ? NotFound() : author;
         }
-        */
     }
 }
