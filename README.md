@@ -24,7 +24,7 @@
 			-OnModelCreating added.
 	- 20240319 Patch Notes
 		-Fixed: Course table was created in multiple migrations.
-		-Invalid variable names in CourseController have been renamed.
+		-Incorrect variable names in CourseController have been renamed.
 		-Dto added.
 		-Jwt added.
 		-Authentication added.
