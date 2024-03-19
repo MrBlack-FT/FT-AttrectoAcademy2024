@@ -9,12 +9,12 @@
 			-LastName removed.
 			-Migration created.
 		-Known Issues
-			-Author and Endpoint to CourseController added but:
+			-Author and Endpoint to CourseController added, but:
 				-Migration cannot be created.
 	- 20240312.1.2 Patch Notes
 		-Small bug fix.
 		-Known Issues
-			-Author and Endpoint to CourseController added but:
+			-Author and Endpoint to CourseController added, but:
 				-Migration cannot be created.
 	- 20240318 Patch Notes
 		-Fixed: Migration could not be created for Author:
@@ -23,8 +23,8 @@
 			-GetAuthor added.
 			-OnModelCreating added.
 	- 20240319 Patch Notes
-		-Fixed: Course table was created in multiple migration.
-		-Invalid variable names in CourseController has been renamed.
+		-Fixed: Course table was created in multiple migrations.
+		-Invalid variable names in CourseController have been renamed.
 		-Dto added.
 		-Jwt added.
 		-Authentication added.
