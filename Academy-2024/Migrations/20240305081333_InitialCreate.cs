@@ -30,6 +30,7 @@ namespace Academy_2024.Migrations
             );
 
             //New Courses table added here.
+            /*
             migrationBuilder.CreateTable
             (
                 name: "Courses",
@@ -45,6 +46,8 @@ namespace Academy_2024.Migrations
                     table.PrimaryKey("PK_Users", x => x.Id);
                 }
             );
+            */
+
         }
 
         /// <inheritdoc />
@@ -52,7 +55,7 @@ namespace Academy_2024.Migrations
         {
             migrationBuilder.DropTable(name: "Users");
             //Dropping new Courses table.
-            migrationBuilder.DropTable(name: "Courses");
+            //migrationBuilder.DropTable(name: "Courses");
         }
     }
 }

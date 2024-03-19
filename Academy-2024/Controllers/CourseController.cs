@@ -47,9 +47,9 @@ namespace Academy_2024.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult> Put(int id, [FromBody] Course data)
         {
-            var user = await _courseRepository.UpdateAsync(id, data);
+            var course = await _courseRepository.UpdateAsync(id, data);
 
-            return user == null ? NotFound() : NoContent();
+            return course == null ? NotFound() : NoContent();
         }
 
         // DELETE api/<UsersController>/5

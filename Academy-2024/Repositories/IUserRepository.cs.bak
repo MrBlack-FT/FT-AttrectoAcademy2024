@@ -14,7 +14,7 @@ namespace Academy_2024.Repositories
 
         Task<User?> GetByIdAsync(int id);
 
-        Task<User?> GetByEmailAsync(string email);
+        //Task<User?> UpdateAsync(int id, User data);
         Task UpdateAsync();
     }
 }

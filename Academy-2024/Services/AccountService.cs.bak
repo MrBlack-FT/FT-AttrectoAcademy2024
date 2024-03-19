@@ -1,0 +1,15 @@
+﻿using Academy_2024.Dtos;
+using Academy_2024.Models;
+
+namespace Academy_2024.Services
+{
+    public class AccountService : IAccountService
+    {
+        private readonly IUserService
+
+        public Task<User?> LoginAsync(LoginDto LoginDto)
+        {
+            throw new NotImplementedException();
+        }
+    }
+}

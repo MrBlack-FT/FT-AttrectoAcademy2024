@@ -9,6 +9,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Migrations\20240311203839_Updated_CoursesTable.Designer.txt" />
+    <None Remove="Migrations\20240311203839_Updated_CoursesTable.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Migrations\20240311203839_Updated_CoursesTable.Designer.txt" />
+    <Compile Include="Migrations\20240311203839_Updated_CoursesTable.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.2">
       <PrivateAssets>all</PrivateAssets>
@@ -16,10 +27,6 @@
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Services\" />
   </ItemGroup>
 
 </Project>

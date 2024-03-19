@@ -22,3 +22,9 @@
 			-GetByAuthorAsync added.
 			-GetAuthor added.
 			-OnModelCreating added.
+	- 20240319 Patch Notes
+		-Fixed: Course table was created in multiple migration.
+		-Invalid variable names in CourseController has been renamed.
+		-Dto added.
+		-Jwt added.
+		-Authentication added.

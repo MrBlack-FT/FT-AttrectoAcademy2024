@@ -24,6 +24,8 @@ namespace Academy_2024.Repositories
 
         public Task<User?> GetByIdAsync(int id) => _context.Users.FirstOrDefaultAsync(user => user.Id == id);
 
+        public Task<User?> GetByEmailAsync(string email) => _context.Users.FirstOrDefaultAsync(user => user.Email == email);
+
         //DateOfBirth added here.
         public async Task<List<User>> GetAdultsAsync()
         {
@@ -48,6 +50,8 @@ namespace Academy_2024.Repositories
             await _context.SaveChangesAsync();
         }
 
+        public Task UpdateAsync() => _context.SaveChangesAsync();
+        /*
         public async Task<User?> UpdateAsync(int id, User data)
         {
             var user = await _context.Users.FirstOrDefaultAsync(user => user.Id == id);
@@ -67,6 +71,7 @@ namespace Academy_2024.Repositories
             }
             return null;
         }
+        */
 
         public async Task<bool> DeleteAsync(int id)
         {

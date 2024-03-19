@@ -2,7 +2,6 @@
 using Academy_2024.Models;
 using Academy_2024.Repositories;
 using Academy_2024.Services;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.FileProviders;
 
@@ -12,7 +11,6 @@ namespace Academy_2024.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class UsersController : ControllerBase
     {
         private readonly IUserService _userService;
@@ -47,7 +45,6 @@ namespace Academy_2024.Controllers
 
         // POST api/<UsersController>
         [HttpPost]
-        [AllowAnonymous]
         public async Task<ActionResult> Post([FromBody] UserDto data)
         {
             await _userService.CreateAsync(data);
