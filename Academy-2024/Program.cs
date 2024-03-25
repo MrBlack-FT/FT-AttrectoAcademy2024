@@ -2,8 +2,11 @@ using Academy_2024.Data;
 using Academy_2024.Options;
 using Academy_2024.Repositories;
 using Academy_2024.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System.Text;
 
 namespace Academy_2024
 {
@@ -61,11 +64,11 @@ namespace Academy_2024
             builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("Jwt"));
 
             builder.Services.AddScoped<IUserRepository, UserRepository>();
-            builder.Services.AddScoped<ICourseRepository, CourseRepository>();
+            builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddScoped<ITokenService, TokenService>();
             builder.Services.AddScoped<IAccountService, AccountService>();
+            builder.Services.AddScoped<ICourseRepository, CourseRepository>();
             
-            builder.Services.AddScoped<IUserService, UserService>();
 
             //AddTransient külön objektumot hoz létre!
             builder.Services.AddScoped<IApplicationBuilder, ApplicationBuilder>();
@@ -74,6 +77,21 @@ namespace Academy_2024
             (
                 options => options.UseSqlite(builder.Configuration.GetConnectionString("ApplicationDBContext"))
             );
+
+            // Add Authentication
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
+            {
+                opt.TokenValidationParameters = new()
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = false,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = builder.Configuration["Jwt:Issuer"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
+                };
+            });
+            builder.Services.AddAuthorization();
 
             var app = builder.Build();
 

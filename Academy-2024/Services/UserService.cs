@@ -17,10 +17,15 @@ namespace Academy_2024.Services
 
         public Task<bool> DeleteAsync(int id)=> _userRepository.DeleteAsync(id);
 
-        public Task<List<UserDto>> GetAdultsAsync()
+        public async Task<List<UserDto>> GetAdultsAsync()
         {
             //return await _context.Users.Where(user => (user.DateOfBirth - DateTime.Now.Year) > 17).ToListAsync();
-            throw new NotImplementedException();
+
+            var users = await _userRepository.GetAllAsync();
+
+            return users.Select(MapToDto).Where(user => (user.DateOfBirth - DateTime.Now.Year) > 17).ToList();
+
+            //throw new NotImplementedException();
         }
 
         public async Task<List<UserDto>> GetAllAsync()

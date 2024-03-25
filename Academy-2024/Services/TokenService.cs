@@ -4,6 +4,7 @@ using Academy_2024.Options;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
+//using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Text;
 
@@ -46,5 +47,18 @@ namespace Academy_2024.Services
                 Expires = expires
             };
         }
+
+        //DEBUG!
+        /*
+        public string GetUserIdFromToken(HttpHeaders headers, string secret)
+        {
+            String token = headers.GetValues("Authorization").First();
+            String jwt = token.Replace("Bearer", "");
+            Console.WriteLine("DEBUG! => JWT: " + jwt);
+            
+
+            return "";
+        }
+        */
     }
 }

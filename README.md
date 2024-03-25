@@ -28,3 +28,6 @@
 		-Dto added.
 		-Jwt added.
 		-Authentication added.
+	- 20240325 Patch Notes
+		-Missing Authentication code added.
+		-Fixed: GetAdultsAsync code only threw new NotImplementedException();

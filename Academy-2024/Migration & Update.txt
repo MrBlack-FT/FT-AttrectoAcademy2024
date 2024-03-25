@@ -1,2 +1,4 @@
 Add-Migration Patch_<név>
 Update-Database
+
+admin@Amail.com	- titkosjelszo1
